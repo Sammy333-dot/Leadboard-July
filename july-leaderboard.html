@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Genius Squad — July 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #04050a;
+  --s1: #0d0f1a;
+  --s2: #111525;
+  --gold: #f5c842;
+  --silver: #b8cfe8;
+  --bronze: #e08c50;
+  --teal: #2dd4bf;
+  --violet: #8b5cf6;
+  --text: #eef0f8;
+  --muted: #5a6285;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── STARS BACKGROUND ── */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+}
+@keyframes twinkle {
+  0%,100% { opacity: var(--min-op, .2); transform: scale(1); }
+  50%      { opacity: var(--max-op, .8); transform: scale(1.3); }
+}
+
+/* ── NEBULA GLOWS ── */
+.nebula {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+.n1 { width:600px;height:400px;top:-100px;left:-100px;background:rgba(139,92,246,.06); }
+.n2 { width:500px;height:500px;top:30%;right:-150px;background:rgba(45,212,191,.05); }
+.n3 { width:700px;height:350px;bottom:-50px;left:10%;background:rgba(245,200,66,.04); }
+
+/* ── LAYOUT ── */
+.page { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  padding: 60px 20px 48px;
+}
+
+.month-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(245,200,66,.3);
+  border-radius: 100px;
+  padding: 7px 22px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(245,200,66,.06);
+  margin-bottom: 28px;
+}
+
+.orbit {
+  width: 8px; height: 8px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  position: relative;
+  animation: orbit 2.5s linear infinite;
+}
+.orbit::after {
+  content: '';
+  position: absolute;
+  width: 3px; height: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+  top: -6px; left: 50%;
+  transform: translateX(-50%);
+}
+@keyframes orbit { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.hero-title {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: clamp(36px, 8vw, 76px);
+  line-height: 1;
+  letter-spacing: -.01em;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .word-july {
+  background: linear-gradient(135deg, #f5c842 0%, #f59e0b 40%, #fde68a 70%, #f5c842 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  background-size: 200%;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+
+.hero-title .word-2026 {
+  color: rgba(238,240,248,.15);
+  -webkit-text-stroke: 1px rgba(238,240,248,.2);
+  display: block;
+  margin-top: -8px;
+}
+
+.squad-name {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(13px, 3vw, 18px);
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.period {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .08em;
+}
+
+/* ── GALAXY DIVIDER ── */
+.galaxy-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 36px 0;
+}
+.galaxy-line::before,
+.galaxy-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,.4), transparent);
+}
+.galaxy-center {
+  font-size: 18px;
+  filter: drop-shadow(0 0 8px rgba(245,200,66,.6));
+}
+
+/* ── PODIUM ── */
+.podium-section { margin-bottom: 48px; }
+
+.podium-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.18fr 1fr;
+  align-items: end;
+  gap: 10px;
+}
+
+.podium-card {
+  border-radius: 20px 20px 0 0;
+  padding: 28px 16px 22px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.podium-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.podium-card:hover::before { opacity: 1; }
+
+/* Rank 1 */
+.pc-1 {
+  background: linear-gradient(170deg, rgba(245,200,66,.1) 0%, rgba(245,150,66,.05) 100%);
+  border-color: rgba(245,200,66,.25);
+  min-height: 260px;
+}
+.pc-1::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Rank 2 */
+.pc-2 {
+  background: linear-gradient(170deg, rgba(184,207,232,.08) 0%, rgba(139,92,246,.04) 100%);
+  border-color: rgba(184,207,232,.2);
+  min-height: 210px;
+}
+.pc-2::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--silver), transparent);
+}
+
+/* Rank 3 */
+.pc-3 {
+  background: linear-gradient(170deg, rgba(224,140,80,.1) 0%, rgba(139,92,246,.04) 100%);
+  border-color: rgba(224,140,80,.2);
+  min-height: 185px;
+}
+.pc-3::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--bronze), transparent);
+}
+
+.podium-glow {
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  top: -30px; left: 50%;
+  transform: translateX(-50%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+.pc-1 .podium-glow { background: rgba(245,200,66,.2); }
+.pc-2 .podium-glow { background: rgba(184,207,232,.12); }
+.pc-3 .podium-glow { background: rgba(224,140,80,.15); }
+
+.podium-medal { font-size: 32px; margin-bottom: 10px; display: block; filter: drop-shadow(0 0 10px currentColor); }
+
+.podium-number {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.pc-1 .podium-number { color: var(--gold); text-shadow: 0 0 30px rgba(245,200,66,.4); }
+.pc-2 .podium-number { color: var(--silver); }
+.pc-3 .podium-number { color: var(--bronze); }
+
+.podium-name {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.podium-pts {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .06em;
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+
+.tier-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+.tb-diamond { background: rgba(125,211,252,.12); color: #7dd3fc; border: 1px solid rgba(125,211,252,.25); }
+.tb-platinum { background: rgba(167,139,250,.12); color: #c4b5fd; border: 1px solid rgba(167,139,250,.25); }
+.tb-gold     { background: rgba(245,200,66,.12);  color: var(--gold); border: 1px solid rgba(245,200,66,.25); }
+.tb-gorgeous { background: rgba(45,212,191,.1);   color: var(--teal); border: 1px solid rgba(45,212,191,.2); }
+.tb-marvelous{ background: rgba(139,92,246,.12);  color: #a78bfa; border: 1px solid rgba(139,92,246,.25); }
+
+/* ── CONGRATS CARD ── */
+.congrats-card {
+  background: linear-gradient(135deg, rgba(245,200,66,.07) 0%, rgba(139,92,246,.05) 50%, rgba(45,212,191,.04) 100%);
+  border: 1px solid rgba(245,200,66,.2);
+  border-radius: 20px;
+  padding: 32px 28px;
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.congrats-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.congrats-star { font-size: 40px; display: block; margin-bottom: 12px; }
+.congrats-name {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 26px;
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(245,200,66,.4);
+  margin-bottom: 8px;
+}
+.congrats-msg { font-size: 14px; color: #8a93b8; line-height: 1.7; max-width: 400px; margin: 0 auto; }
+
+/* ── BONUS SECTION ── */
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.section-head-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(139,92,246,.4), transparent);
+}
+.section-head-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.bonus-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  background: var(--s1);
+  border: 1px solid #181c2e;
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 8px;
+  transition: border-color .2s, transform .15s;
+  position: relative;
+  overflow: hidden;
+}
+.bonus-row::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 4px 0 0 4px;
+}
+.bonus-row:nth-child(1)::before { background: var(--gold); }
+.bonus-row:nth-child(2)::before { background: var(--silver); }
+.bonus-row:nth-child(3)::before { background: var(--bronze); }
+.bonus-row:nth-child(4)::before { background: var(--teal); }
+.bonus-row:nth-child(5)::before { background: var(--violet); }
+
+.bonus-row:hover { border-color: rgba(139,92,246,.3); transform: translateX(5px); }
+
+.bonus-rank {
+  font-family: 'Orbitron', monospace;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--muted);
+}
+.bonus-name { font-weight: 700; font-size: 15px; }
+.bonus-plus { font-size: 12px; color: #4ade80; font-weight: 600; font-family: 'Orbitron', monospace; }
+.bonus-total { font-family: 'Orbitron', monospace; font-size: 12px; color: var(--text); letter-spacing: .03em; text-align: right; }
+
+/* ── FULL RANKINGS ── */
+.rankings { margin-top: 36px; }
+
+.rank-row {
+  position: relative;
+  background: var(--s1);
+  border: 1px solid #181c2e;
+  border-radius: 16px;
+  padding: 18px 20px 14px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color .2s, transform .15s;
+}
+.rank-row:hover { border-color: rgba(139,92,246,.3); transform: translateX(4px); }
+
+.rank-row-top {
+  display: grid;
+  grid-template-columns: 50px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rr-num {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 24px;
+  text-align: center;
+}
+.rr-1 { color: var(--gold); text-shadow: 0 0 16px rgba(245,200,66,.5); }
+.rr-2 { color: var(--silver); }
+.rr-3 { color: var(--bronze); }
+.rr-other { color: #2a3050; }
+
+.rr-info { }
+.rr-name { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+.rr-score { font-family: 'Orbitron', monospace; font-size: 11px; color: var(--muted); letter-spacing: .04em; }
+.rr-badge { text-align: right; }
+
+/* Energy bar */
+.energy-bar-wrap {
+  height: 4px;
+  background: rgba(255,255,255,.04);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.energy-bar {
+  height: 100%;
+  border-radius: 4px;
+  position: relative;
+  animation: energize .8s ease both;
+}
+@keyframes energize { from { width: 0 !important; } }
+
+.rank-row:nth-child(1) .energy-bar { background: linear-gradient(90deg, #f5c842, #fde68a); box-shadow: 0 0 8px rgba(245,200,66,.6); }
+.rank-row:nth-child(2) .energy-bar { background: linear-gradient(90deg, #b8cfe8, #e2edf7); }
+.rank-row:nth-child(3) .energy-bar { background: linear-gradient(90deg, #e08c50, #f5c099); }
+.rank-row:nth-child(4) .energy-bar { background: linear-gradient(90deg, #2dd4bf, #5eead4); }
+.rank-row:nth-child(5) .energy-bar { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+.rank-row:nth-child(6) .energy-bar { background: linear-gradient(90deg, #6366f1, #818cf8); }
+.rank-row:nth-child(7) .energy-bar { background: linear-gradient(90deg, #64748b, #94a3b8); }
+.rank-row:nth-child(8) .energy-bar { background: linear-gradient(90deg, #374151, #6b7280); }
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 48px 20px 0;
+}
+.footer-divider {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,.5), transparent);
+  margin: 0 auto 28px;
+}
+.tutor-label { font-size: 11px; color: var(--muted); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 8px; }
+.tutor-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  color: var(--teal);
+  text-shadow: 0 0 20px rgba(45,212,191,.3);
+  margin-bottom: 6px;
+}
+.footer-date { font-size: 11px; color: #2a3050; letter-spacing: .08em; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero    { animation: fadeUp .7s ease both; }
+.podium-section { animation: fadeUp .7s .1s ease both; }
+.congrats-card  { animation: fadeUp .7s .2s ease both; }
+</style>
+</head>
+<body>
+
+<!-- STARS -->
+<div class="stars" id="stars"></div>
+
+<!-- NEBULA -->
+<div class="nebula n1"></div>
+<div class="nebula n2"></div>
+<div class="nebula n3"></div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="month-pill">
+      <span class="orbit"></span>
+      July 2026 Monthly Rankings
+    </div>
+    <p class="hero-eyebrow">Total Points Collected · 01 Jul – 31 Jul 2026</p>
+    <h1 class="hero-title">
+      <span class="word-july">JULY</span>
+      <span class="word-2026">2026</span>
+    </h1>
+    <div class="squad-name">✦ English Genius Squad ✦</div>
+    <p class="period">Thank you so much my brilliant students — y'all the best 🏆</p>
+  </div>
+
+  <!-- PODIUM -->
+  <div class="podium-section">
+    <div class="podium-grid">
+
+      <!-- 2nd -->
+      <div class="podium-card pc-2">
+        <div class="podium-glow"></div>
+        <span class="podium-medal">🥈</span>
+        <div class="podium-number">2</div>
+        <div class="podium-name">Abdusalom</div>
+        <div class="podium-pts">82,600,000,000</div>
+        <span class="tier-badge tb-platinum">Platinum Gold</span>
+      </div>
+
+      <!-- 1st -->
+      <div class="podium-card pc-1">
+        <div class="podium-glow"></div>
+        <span class="podium-medal">🥇</span>
+        <div class="podium-number">1</div>
+        <div class="podium-name">Javohir</div>
+        <div class="podium-pts">124,100,000,000</div>
+        <span class="tier-badge tb-diamond">Diamond 💎 Platinum</span>
+      </div>
+
+      <!-- 3rd -->
+      <div class="podium-card pc-3">
+        <div class="podium-glow"></div>
+        <span class="podium-medal">🥉</span>
+        <div class="podium-number">3</div>
+        <div class="podium-name">Amirbek</div>
+        <div class="podium-pts">78,500,000,000</div>
+        <span class="tier-badge tb-gold">Gold Gorgeous</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONGRATS -->
+  <div class="congrats-card">
+    <span class="congrats-star">🏆</span>
+    <div class="congrats-name">JAVOHIR</div>
+    <p class="congrats-msg">
+      Champion of July 2026. Your brilliance lights up the squad.
+      Your teacher Sanjar is truly proud of you — keep reaching for the stars! 🌟
+    </p>
+  </div>
+
+  <!-- BONUS AWARDS -->
+  <div class="section-head">
+    <span class="section-head-label">🎁 Bonus Points Awarded</span>
+    <div class="section-head-line"></div>
+  </div>
+
+  <div style="margin-bottom:40px">
+    <div class="bonus-row">
+      <div class="bonus-rank">1</div>
+      <div><div class="bonus-name">Javohir</div></div>
+      <div class="bonus-plus">+900,000,000</div>
+      <div class="bonus-total">125,000,000,000</div>
+    </div>
+    <div class="bonus-row">
+      <div class="bonus-rank">2</div>
+      <div><div class="bonus-name">Abdusalom</div></div>
+      <div class="bonus-plus">+400,000,000</div>
+      <div class="bonus-total">83,000,000,000</div>
+    </div>
+    <div class="bonus-row">
+      <div class="bonus-rank">3</div>
+      <div><div class="bonus-name">Amirbek</div></div>
+      <div class="bonus-plus">+500,000,000</div>
+      <div class="bonus-total">79,000,000,000</div>
+    </div>
+    <div class="bonus-row">
+      <div class="bonus-rank">4</div>
+      <div><div class="bonus-name">Miraziz</div></div>
+      <div class="bonus-plus">+400,000,000</div>
+      <div class="bonus-total">53,000,000,000</div>
+    </div>
+    <div class="bonus-row">
+      <div class="bonus-rank">5</div>
+      <div><div class="bonus-name">Shaxrizoda</div></div>
+      <div class="bonus-plus">+500,000,000</div>
+      <div class="bonus-total">50,500,000,000</div>
+    </div>
+  </div>
+
+  <!-- FULL RANKINGS -->
+  <div class="rankings">
+    <div class="section-head">
+      <span class="section-head-label">📡 Full Rankings — All Students</span>
+      <div class="section-head-line"></div>
+    </div>
+
+    <div class="rank-row">
+      <div class="rank-row-top">
+        <div class="rr-num rr-1">01</div>
+        <div class="rr-info">
+          <div class="rr-name">Javohir 🥇</div>
+          <div class="rr-score">124,100,000,000 pts</div>
+        </div>
+        <div class="rr-badge"><span class="tier-badge tb-diamond">Diamond 💎</span></div>
+      </div>
+      <div class="energy-bar-wrap"><div class="energy-bar" style="width:100%"></div></div>
+    </div>
+
+    <div class="rank-row">
+      <div class="rank-row-top">
+        <div class="rr-num rr-2">02</div>
+        <div class="rr-info">
+          <div class="rr-name">Abdusalom 🥈</div>
+          <div class="rr-score">82,600,000,000 pts</div>
+        </div>
+        <div class="rr-badge"><span class="tier-badge tb-platinum">Platinum Gold</span></div>
+      </div>
+      <div class="energy-bar-wrap"><div class="energy-bar" style="width:66.6%"></div></div>
+    </div>
+
+    <div class="rank-row">
+      <div class="rank-row-top">
+        <div class="rr-num rr-3">03</div>
+        <div class="rr-info">
+          <div class="rr-name">Amirbek 🥉</div>
+          <div class="rr-score">78,500,000,000 pts</div>
+        </div>
+        <div class="rr-badge"><span class="tier-badge tb-gold">Gold Gorgeous</span></div>
+      </div>
+      <div class="energy-bar-wrap"><div class="energy-bar" style="width:63.3%"></div></div>
+    </div>
+
+    <div class="rank-row">
+      <div class="rank-row-top">
+        <div class="rr-num rr-other">04</div>
+        <div class="rr-info">
+          <div class="rr-name">Miraziz</div>
+          <div class="rr-score">52,600,000,000 pts</div>
+        </div>
+        <div class="rr-badge"><span class="tier-badge tb-gold">Gold Gorgeous</span></div>
+      </div>
+      <div class="energy-bar-wrap"><div class="energy-bar" style="width:42.4%"></div></div>
+    </div>
+
+    <div class="rank-row">
+      <div class="rank-row-top">
+        <div class="rr-num rr-other">05</div>
+        <div class="rr-info">
+          <div class="rr-name">Shaxrizoda</div>
+          <div class="rr-score">50,000,000,000 pts</div>
+        </div>
+        <div class="rr-badge"><span class="tier-badge tb-gorgeous">Gorgeous Marvelous</span></div>
+      </div>
+      <div class="energy-bar-wrap"><div class="energy-bar" style="width:40.3%"></div></div>
+    </div>
+
+    <div class="rank-row">
+      <div class="rank-row-top">
+        <div class="rr-num rr-other">06</div>
+        <div class="rr-info">
+          <div class="rr-name">Qodirbek</div>
+          <div class="rr-score">49,600,000,000 pts</div>
+        </div>
+        <div class="rr-badge"><span class="tier-badge tb-marvelous">Marvelous Brilliant</span></div>
+      </div>
+      <div class="energy-bar-wrap"><div class="energy-bar" style="width:40%"></div></div>
+    </div>
+
+    <div class="rank-row">
+      <div class="rank-row-top">
+        <div class="rr-num rr-other">07</div>
+        <div class="rr-info">
+          <div class="rr-name">Mirjalol</div>
+          <div class="rr-score">8,300,000,000 pts</div>
+        </div>
+        <div class="rr-badge"><span class="tier-badge tb-marvelous">Marvelous Brilliant</span></div>
+      </div>
+      <div class="energy-bar-wrap"><div class="energy-bar" style="width:6.7%"></div></div>
+    </div>
+
+    <div class="rank-row">
+      <div class="rank-row-top">
+        <div class="rr-num rr-other">08</div>
+        <div class="rr-info">
+          <div class="rr-name">Kamron</div>
+          <div class="rr-score">360,000,000 pts</div>
+        </div>
+        <div class="rr-badge"><span class="tier-badge tb-marvelous">Marvelous Brilliant</span></div>
+      </div>
+      <div class="energy-bar-wrap"><div class="energy-bar" style="width:0.3%"></div></div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-divider"></div>
+    <div class="tutor-label">Designed with ❤️ by</div>
+    <div class="tutor-name">SANJAR</div>
+    <div class="tutor-label" style="margin-bottom:4px">English Tutor</div>
+    <div class="footer-date">31 July 2026</div>
+  </div>
+
+</div>
+
+<script>
+// Generate twinkling stars
+const container = document.getElementById('stars');
+for (let i = 0; i < 160; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  const size = Math.random() * 2.5 + 0.5;
+  star.style.cssText = `
+    width:${size}px; height:${size}px;
+    top:${Math.random()*100}%;
+    left:${Math.random()*100}%;
+    --d:${2 + Math.random()*4}s;
+    --delay:-${Math.random()*5}s;
+    --min-op:${0.05 + Math.random()*.2};
+    --max-op:${0.5 + Math.random()*.5};
+  `;
+  container.appendChild(star);
+}
+</script>
+
+</body>
+</html>
